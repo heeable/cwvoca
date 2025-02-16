@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>42개월 아이를 위한 재미있는 영어 단어 공부장</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fdfdfd;
+      color: #333;
+      line-height: 1.5;
+    }
+    header {
+      background-color: #ffebcd;
+      padding: 1rem;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 1rem;
+      color: #ff6633;
+    }
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .item {
+      width: 120px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 0.5rem;
+      text-align: center;
+      background-color: #fff;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+    .item img {
+      width: 50px;
+      height: 50px;
+      display: block;
+      margin: 0 auto 0.5rem;
+      object-fit: contain;
+    }
+    .item:hover {
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+    }
+    .activities {
+      background: #fff8dc;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    .activities li {
+      margin-bottom: 0.5rem;
+    }
+    button.listen {
+      background: #f0ad4e;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+    button.listen:hover {
+      background: #ec971f;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #ffebcd;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>42개월 아이를 위한 재미있는 영어 단어 공부장</h1>
+  </header>
+
+  <main>
+    <!-- 전역 변수: 현재 카테고리에서 랜덤으로 뽑은 단어 저장 -->
+    <script>
+      let expectedWord = "";
+
+      // 카테고리별 단어 목록 (원하는 대로 수정 가능)
+      const wordsMap = {
+        animals: ["Dog", "Cat", "Rabbit", "Elephant", "Lion"],
+        food: ["Apple", "Banana", "Bread", "Carrot", "Pizza"],
+        colors: ["Red", "Blue", "Green", "Yellow", "Black"],
+        numbers: ["One", "Two", "Three", "Four", "Five"],
+        family: ["Mommy", "Daddy", "Brother", "Sister", "Grandma", "Grandpa"],
+        vehicles: ["Car", "Bus", "Airplane", "Ship", "Bicycle"]
+      };
+
+      // 카테고리별로 듣기 버튼을 눌렀을 때, 단어 하나만 랜덤으로 재생
+      function playSound(category) {
+        const words = wordsMap[category];
+        // 단어 배열 중 하나를 무작위로 선택
+        const randomIndex = Math.floor(Math.random() * words.length);
+        expectedWord = words[randomIndex];
+        speak(expectedWord);
+      }
+
+      function speak(text) {
+        const msg = new SpeechSynthesisUtterance(text);
+        msg.lang = "en-US";
+        window.speechSynthesis.speak(msg);
+      }
+
+      // 사용자가 그림을 클릭했을 때, 현재 재생된 단어와 동일하면 정답!
+      function checkAnswer(itemName) {
+        if (itemName === expectedWord) {
+          alert("정답입니다! " + itemName);
+        } else {
+          alert("다시 시도해보세요!");
+        }
+      }
+    </script>
+
+    <section>
+      <h2>1. 동물 (Animals)</h2>
+      <p>그림을 보고 따라 읽어보아요! 색칠도 해보아요!</p>
+      <button class="listen" onclick="playSound('animals')">[🔊 듣기]</button>
+      <p style="font-size: 0.9rem">(소리를 듣고 해당하는 그림을 클릭해보세요!)</p>
+      <div class="items">
+        <div class="item" onclick="checkAnswer('Dog')">
+          <img src="https://cdn.pixabay.com/photo/2021/07/08/19/08/dog-6397899_1280.png" alt="Dog" />
+          <p>Dog (강아지)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Cat')">
+          <img src="https://cdn.pixabay.com/photo/2019/08/21/13/28/cat-4424957_1280.png" alt="Cat" />
+          <p>Cat (고양이)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Rabbit')">
+          <img src="https://cdn.pixabay.com/photo/2017/06/20/19/22/rabbit-2424369_1280.png" alt="Rabbit" />
+          <p>Rabbit (토끼)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Elephant')">
+          <img src="https://cdn.pixabay.com/photo/2021/07/08/19/07/elephant-6397891_1280.png" alt="Elephant" />
+          <p>Elephant (코끼리)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Lion')">
+          <img src="https://cdn.pixabay.com/photo/2021/07/08/19/07/lion-6397897_1280.png" alt="Lion" />
+          <p>Lion (사자)</p>
+        </div>
+      </div>
+      <p><strong>문장 연습:</strong> "I see a dog! (나는 강아지를 봐요!)"</p>
+    </section>
+
+    <section>
+      <h2>2. 음식 (Food)</h2>
+      <p>맛있는 음식을 영어로 배워보아요!</p>
+      <button class="listen" onclick="playSound('food')">[🔊 듣기]</button>
+      <p style="font-size: 0.9rem">(소리를 듣고 해당하는 음식을 찾아 클릭하세요!)</p>
+      <div class="items">
+        <div class="item" onclick="checkAnswer('Apple')">
+          <img src="https://cdn.pixabay.com/photo/2016/09/26/08/31/apple-1694499_1280.png" alt="Apple" />
+          <p>Apple (사과)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Banana')">
+          <img src="https://cdn.pixabay.com/photo/2018/07/08/20/05/bananas-3520578_1280.png" alt="Banana" />
+          <p>Banana (바나나)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Bread')">
+          <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/bread-304109_1280.png" alt="Bread" />
+          <p>Bread (빵)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Carrot')">
+          <img src="https://cdn.pixabay.com/photo/2016/03/31/15/09/cartoon-1299397_1280.png" alt="Carrot" />
+          <p>Carrot (당근)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Pizza')">
+          <img src="https://cdn.pixabay.com/photo/2017/01/31/20/52/pizza-2028553_1280.png" alt="Pizza" />
+          <p>Pizza (피자)</p>
+        </div>
+      </div>
+      <p><strong>문장 연습:</strong> "I like pizza! (나는 피자를 좋아해요!)"</p>
+    </section>
+
+    <section>
+      <h2>3. 색깔 (Colors)</h2>
+      <p>색칠하면서 색깔을 배워요!</p>
+      <button class="listen" onclick="playSound('colors')">[🔊 듣기]</button>
+      <p style="font-size: 0.9rem">(소리를 듣고 해당하는 색깔을 클릭해보세요!)</p>
+      <div class="items">
+        <div class="item" onclick="checkAnswer('Red')">
+          <img src="https://cdn.pixabay.com/photo/2012/04/13/20/13/red-33689_1280.png" alt="Red" style="width:50px;height:50px;" />
+          <p>Red (빨강)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Blue')">
+          <img src="https://cdn.pixabay.com/photo/2012/04/13/20/14/blue-33697_1280.png" alt="Blue" style="width:50px;height:50px;" />
+          <p>Blue (파랑)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Green')">
+          <img src="https://cdn.pixabay.com/photo/2012/04/13/20/15/green-33710_1280.png" alt="Green" style="width:50px;height:50px;" />
+          <p>Green (초록)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Yellow')">
+          <img src="https://cdn.pixabay.com/photo/2012/04/13/20/15/yellow-33712_1280.png" alt="Yellow" style="width:50px;height:50px;" />
+          <p>Yellow (노랑)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Black')">
+          <img src="https://cdn.pixabay.com/photo/2012/04/13/20/14/black-33672_1280.png" alt="Black" style="width:50px;height:50px;" />
+          <p>Black (검정)</p>
+        </div>
+      </div>
+      <p><strong>문장 연습:</strong> "My ball is red! (내 공은 빨간색이에요!)"</p>
+    </section>
+
+    <section>
+      <h2>4. 숫자 (Numbers)</h2>
+      <p>숫자를 읽고 손가락으로 따라 해보아요!</p>
+      <button class="listen" onclick="playSound('numbers')">[🔊 듣기]</button>
+      <p style="font-size: 0.9rem">(소리를 듣고 맞는 숫자를 클릭하세요!)</p>
+      <div class="items">
+        <div class="item" onclick="checkAnswer('One')">
+          <img src="https://cdn.pixabay.com/photo/2012/04/24/12/22/number-40030_1280.png" alt="One" style="width:50px;height:50px;" />
+          <p>One (하나)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Two')">
+          <img src="https://cdn.pixabay.com/photo/2012/04/24/12/22/number-40031_1280.png" alt="Two" style="width:50px;height:50px;" />
+          <p>Two (둘)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Three')">
+          <img src="https://cdn.pixabay.com/photo/2012/04/24/12/22/number-40032_1280.png" alt="Three" style="width:50px;height:50px;" />
+          <p>Three (셋)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Four')">
+          <img src="https://cdn.pixabay.com/photo/2012/04/24/12/22/number-40033_1280.png" alt="Four" style="width:50px;height:50px;" />
+          <p>Four (넷)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Five')">
+          <img src="https://cdn.pixabay.com/photo/2012/04/24/12/23/number-40034_1280.png" alt="Five" style="width:50px;height:50px;" />
+          <p>Five (다섯)</p>
+        </div>
+      </div>
+      <p><strong>문장 연습:</strong> "I have three apples! (나는 사과가 세 개 있어요!)"</p>
+    </section>
+
+    <section>
+      <h2>5. 가족 (Family)</h2>
+      <p>우리 가족을 영어로 불러볼까요?</p>
+      <button class="listen" onclick="playSound('family')">[🔊 듣기]</button>
+      <p style="font-size: 0.9rem">(소리를 듣고 해당하는 가족 구성원을 클릭해보세요!)</p>
+      <div class="items">
+        <div class="item" onclick="checkAnswer('Mommy')">
+          <img src="https://cdn.pixabay.com/photo/2017/01/31/12/23/people-2024000_1280.png" alt="Mommy" style="width:50px;height:50px;" />
+          <p>Mommy (엄마)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Daddy')">
+          <img src="https://cdn.pixabay.com/photo/2017/01/31/12/23/people-2024005_1280.png" alt="Daddy" style="width:50px;height:50px;" />
+          <p>Daddy (아빠)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Brother')">
+          <img src="https://cdn.pixabay.com/photo/2017/01/31/12/23/people-2024007_1280.png" alt="Brother" style="width:50px;height:50px;" />
+          <p>Brother (형, 오빠, 남동생)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Sister')">
+          <img src="https://cdn.pixabay.com/photo/2017/01/31/12/23/people-2024011_1280.png" alt="Sister" style="width:50px;height:50px;" />
+          <p>Sister (누나, 언니, 여동생)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Grandma')">
+          <img src="https://cdn.pixabay.com/photo/2017/05/15/17/38/character-2313536_1280.png" alt="Grandma" style="width:50px;height:50px;" />
+          <p>Grandma (할머니)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Grandpa')">
+          <img src="https://cdn.pixabay.com/photo/2017/05/15/17/38/character-2313537_1280.png" alt="Grandpa" style="width:50px;height:50px;" />
+          <p>Grandpa (할아버지)</p>
+        </div>
+      </div>
+      <p><strong>문장 연습:</strong> "I love my mommy! (나는 엄마를 사랑해요!)"</p>
+    </section>
+
+    <section>
+      <h2>6. 탈것 (Vehicles)</h2>
+      <p>어떤 탈것을 타봤나요? 영어로 배워봐요!</p>
+      <button class="listen" onclick="playSound('vehicles')">[🔊 듣기]</button>
+      <p style="font-size: 0.9rem">(소리를 듣고 알맞은 탈것을 클릭하세요!)</p>
+      <div class="items">
+        <div class="item" onclick="checkAnswer('Car')">
+          <img src="https://cdn.pixabay.com/photo/2016/03/31/20/11/car-1299198_1280.png" alt="Car" style="width:50px;height:50px;" />
+          <p>Car (자동차)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Bus')">
+          <img src="https://cdn.pixabay.com/photo/2017/01/31/20/11/bus-2028315_1280.png" alt="Bus" style="width:50px;height:50px;" />
+          <p>Bus (버스)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Airplane')">
+          <img src="https://cdn.pixabay.com/photo/2017/01/31/20/13/plane-2028332_1280.png" alt="Airplane" style="width:50px;height:50px;" />
+          <p>Airplane (비행기)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Ship')">
+          <img src="https://cdn.pixabay.com/photo/2017/01/31/20/23/cruise-ship-2028409_1280.png" alt="Ship" style="width:50px;height:50px;" />
+          <p>Ship (배)</p>
+        </div>
+        <div class="item" onclick="checkAnswer('Bicycle')">
+          <img src="https://cdn.pixabay.com/photo/2017/01/31/20/19/bicycle-2028361_1280.png" alt="Bicycle" style="width:50px;height:50px;" />
+          <p>Bicycle (자전거)</p>
+        </div>
+      </div>
+      <p><strong>문장 연습:</strong> "I see a bus! (나는 버스를 봐요!)"</p>
+    </section>
+
+    <section class="activities">
+      <h2>추가 활동</h2>
+      <ol>
+        <li>단어 따라 말하기</li>
+        <li>그림 색칠하기</li>
+        <li>손가락으로 숫자 세어보기</li>
+        <li>가족사진을 보면서 가족 구성원 말하기</li>
+        <li>듣고 맞는 그림을 클릭하는 게임하기</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>이 공부장을 프린트해서 아이와 함께 재미있게 활용해보세요! 😊</p>
+  </footer>
+</body>
+</html>
